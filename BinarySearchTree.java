@@ -69,6 +69,36 @@ class BST {
         }
     }
 
+    public void printTree(BST obj) {
+        int opt;
+        Scanner sc = new Scanner(System.in);
+        System.out.println( "\n1.Print 2D\n2.Print Preorder\n3.Print Inorder\n4.Print Postorder\nEnter your choice: ");
+        opt = sc.nextInt();
+
+        switch(opt) {
+            case 1:
+                obj.print2D(obj.root, 5);
+                break;
+            
+            case 2:
+                obj.printPreorder(obj.root);
+                break;
+            
+            case 3:
+                obj.printInorder(obj.root);
+                break;
+
+            case 4:
+                obj.printPostorder(obj.root);
+                break;
+        
+            default:
+                System.out.println("Enter a valid option");
+                break;
+        }
+        sc.close();
+    }
+
     public void print2D(TreeNode r, int space) {
         if (r == null) {
             return ;
@@ -84,7 +114,41 @@ class BST {
         print2D(r.left, space);
     }
 
-    
+    public void printPreorder(TreeNode r) {
+        if(r == null) {
+            return;
+        }
+
+        System.out.print(r.value + " ");
+
+        printPreorder(r.left);
+
+        printPreorder(r.right);
+    }
+
+    public void printInorder(TreeNode r) {
+        if(r == null) {
+            return;
+        }
+
+        printInorder(r.left);
+
+        System.out.print(r.value + " ");
+
+        printInorder(r.right);
+    }
+
+    public void printPostorder(TreeNode r) {
+        if(r == null) {
+            return;
+        }
+
+        printPostorder(r.left);
+
+        printPostorder(r.right);
+
+        System.out.print(r.value + " ");
+    }
 };
 
 class Main {
@@ -95,7 +159,9 @@ class Main {
         boolean loop = true;
         Scanner cin = new Scanner(System.in);
         while(loop) {
+            cin.nextLine();
             System.out.print("1.Insert Node\n2.Search Node\n3.Delete Node\n4.Print BST Values\n0.Exit\nEnter your choice: ");
+            
             opt = cin.nextInt();
             
             switch(opt) {
@@ -122,7 +188,7 @@ class Main {
     
                 case 4:
                     System.out.println("Print");
-                    obj.print2D(obj.root, 5);
+                    obj.printTree(obj);
                     break;
     
                 default:
