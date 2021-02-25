@@ -97,8 +97,7 @@ class Main {
         while(loop) {
             System.out.print("1.Insert Node\n2.Search Node\n3.Delete Node\n4.Print BST Values\n0.Exit\nEnter your choice: ");
             opt = cin.nextInt();
-            TreeNode new_node = new TreeNode();
-
+            
             switch(opt) {
                 case 0:
                     loop = false;
@@ -108,7 +107,7 @@ class Main {
                     System.out.println("Insert");
                     System.out.println("Enter value of tree node to insert in BST: ");
                     val = cin.nextInt();
-                    new_node.value = val;
+                    TreeNode new_node = new TreeNode(val);
                     obj.insertNode(new_node);
                     System.out.println();
                     break;
