@@ -69,6 +69,29 @@ class BST {
         }
     }
 
+    public TreeNode iterativeSearch(int val) {
+        if(root == null) {
+            return root;
+        }
+        else {
+            TreeNode temp = root;
+
+            while(temp != null) {
+                if(val == temp.value) {
+                    return temp;
+                }    
+                else if(val < temp.value) {
+                    temp = temp.left;
+                }
+                else {
+                    temp = temp.right;
+                }
+            }
+
+            return null;
+        }
+    }
+    
     public void printTree(BST obj) {
         int opt;
         Scanner sc = new Scanner(System.in);
@@ -180,6 +203,16 @@ class Main {
     
                 case 2:
                     System.out.println("Search");
+                    System.out.println("Enter value to be searched: ");
+                    val = cin.nextInt();
+                    TreeNode new_nod = new TreeNode();
+                    new_nod = obj.iterativeSearch(val);
+                    if(new_nod != null) {
+                        System.out.println("\nValue Found!!");
+                    }
+                    else {
+                        System.out.println("\nValue Not Found!!");
+                    }
                     break;
     
                 case 3:
