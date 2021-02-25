@@ -93,7 +93,70 @@ class BST {
             cout << r->value << "\n";
             print2D(r->left, space);
         }
+
+        void printPreorder(TreeNode* r) {
+            if(r == NULL) {
+                return;
+            }
+            cout << r->value << " ";
+
+            printPreorder(r->left);
+            
+            printPreorder(r->right);
+        }
+
+        void printInorder(TreeNode* r) {
+            if(r == NULL) {
+                return;
+            }
+
+            printInorder(r->left);
+
+            cout << r->value << " ";
+                
+            printInorder(r->right);
+        } 
+
+        void printPostorder(TreeNode *r) {
+            if(r == NULL) {
+                return;
+            }
+
+            printPostorder(r->left);
+
+            printPostorder(r->right);
+
+            cout << r->value << " ";
+        }
 };
+
+void printTree(BST obj) {
+    int opt;
+    cout << "\n1.Print 2D\n2.Print Preorder\n3.Print Inorder\n4.Print Postorder\nEnter your choice: " << endl;
+    cin >> opt;
+
+    switch(opt) {
+        case 1:
+            obj.print2D(obj.root, 5);
+            break;
+        
+        case 2:
+            obj.printPreorder(obj.root);
+            break;
+        
+        case 3:
+            obj.printInorder(obj.root);
+            break;
+
+        case 4:
+            obj.printPostorder(obj.root);
+            break;
+    
+        default:
+            cout << "Enter a valid option" << endl;
+            break;
+    }
+}
  
 int main() {
     BST obj;
@@ -125,8 +188,7 @@ int main() {
                 break;
 
             case 4:
-                cout << "Print" << endl;
-                obj.print2D(obj.root, 5);
+                printTree(obj);
                 break;
 
             case 5:
