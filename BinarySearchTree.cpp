@@ -79,6 +79,29 @@ class BST {
             }
         }
 
+        TreeNode* iterativeSearch(int val) {
+            if(root == NULL) {
+                return root;
+            }
+            else {
+                TreeNode *temp = root;
+
+                while(temp != NULL) {
+                    if(val == temp->value) {
+                        return temp;
+                    }    
+                    else if(val < temp->value) {
+                        temp = temp->left;
+                    }
+                    else {
+                        temp = temp->right;
+                    }
+                }
+
+                return NULL;
+            }
+        }
+        
         void print2D(TreeNode *r, int space) {
             if (r == NULL) {
                 return ;
@@ -181,6 +204,15 @@ int main() {
 
             case 2:
                 cout << "Search" << endl;
+                cout << "\nEnter value to be searched: ";
+                cin >> val;
+                new_node = obj.iterativeSearch(val);
+                if(new_node != NULL) {
+                    cout << "\nValue Found!!";
+                }
+                else {
+                    cout << "\nValue Not Found!!";
+                }
                 break;
 
             case 3:
