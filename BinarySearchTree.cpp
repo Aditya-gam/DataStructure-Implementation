@@ -32,7 +32,7 @@ class BST {
         }
 
         bool isEmpty() {
-            
+
             if(root == NULL) {
                 return true;
             }
@@ -59,9 +59,21 @@ class BST {
                     }  
                     else if((new_node->value < temp->value) && (temp->left == NULL)) {
                         temp->left = new_node;
-                        cout << "Value inserted" << endl;
+                        cout << "Value inserted to left" << endl;
                         break;
                     }  
+                    else if(new_node->value < temp->value) {
+                        temp = temp->left;
+                    }
+                    else if((new_node->value > temp->value) && (temp->right == NULL)) {
+                        temp->right = new_node;
+                        cout << "Value inserted to right" << endl;
+                        break;
+                    }  
+                    else if(new_node->value > temp->value) {
+                        temp = temp->right;
+                    }
+
 
                 }
             }
@@ -84,11 +96,12 @@ class BST {
 };
  
 int main() {
-    int opt;
+    BST obj;
+    int opt, val;
     while(true) {
-        cout << "1.Insert Node\n2.Search Node\n3.Delete Node\n4.Print BST Values\n5.Clear Screen\n0.Exit\nEnter your choice: ";
+        cout << "\n1.Insert Node\n2.Search Node\n3.Delete Node\n4.Print BST Values\n5.Clear Screen\n0.Exit\nEnter your choice: ";
         cin >> opt;
-
+        TreeNode *new_node = new TreeNode();
         switch(opt) {
             case 0:
                 exit(0);
@@ -96,6 +109,11 @@ int main() {
             
             case 1:
                 cout << "Insert" << endl;
+                cout << "\nEnter value of tree node to insert in BST: ";
+                cin >> val;                 
+                new_node->value = val;
+                obj.insertNode(new_node);
+                cout << endl;
                 break;
 
             case 2:
@@ -108,6 +126,7 @@ int main() {
 
             case 4:
                 cout << "Print" << endl;
+                obj.print2D(obj.root, 5);
                 break;
 
             case 5:
