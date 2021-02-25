@@ -31,7 +31,7 @@ class BST {
         }
     }
 
-    void insertNode(TreeNode new_node) {
+    public void insertNode(TreeNode new_node) {
 
         if(root == null) {
             root = new_node;
@@ -69,7 +69,7 @@ class BST {
         }
     }
 
-    void print2D(TreeNode r, int space) {
+    public void print2D(TreeNode r, int space) {
         if (r == null) {
             return ;
         }
@@ -84,6 +84,10 @@ class BST {
         print2D(r.left, space);
     }
 
+    
+};
+
+class Main {
     public static void main(String[] args) {
         BST obj = new BST();
         int opt; 
@@ -130,5 +134,5 @@ class BST {
         }
         cin.close();
     }
-}
+};
  
