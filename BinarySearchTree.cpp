@@ -41,6 +41,23 @@ class BST {
             }
         }
 
+        int height(TreeNode *r) {
+            if(r == NULL) {
+                return -1;
+            }
+            else {
+                int lheight = height(r->left);
+                int rheight = height(r->right);
+
+                if(lheight > rheight) {
+                    return (lheight + 1);
+                }
+                else {
+                    return (rheight + 1);
+                }
+            }
+        }
+        
         void insertNode(TreeNode *new_node) {
 
             if(root == NULL) {
@@ -185,7 +202,7 @@ int main() {
     BST obj;
     int opt, val;
     while(true) {
-        cout << "\n1.Insert Node\n2.Search Node\n3.Delete Node\n4.Print BST Values\n5.Clear Screen\n0.Exit\nEnter your choice: ";
+        cout << "\n1.Insert Node\n2.Search Node\n3.Delete Node\n4.Print BST Values\n5.Height Of Tree\n6.Clear Screen\n0.Exit\nEnter your choice: ";
         cin >> opt;
         TreeNode *new_node = new TreeNode();
         switch(opt) {
@@ -224,6 +241,11 @@ int main() {
                 break;
 
             case 5:
+                cout << "Tree Height" << endl;
+                cout << "Height: " << obj.height(obj.root) << endl;
+                break;
+                
+            case 6:
                 // cout << "Clear Screen" << endl;
                 system("cls");
                 break;
