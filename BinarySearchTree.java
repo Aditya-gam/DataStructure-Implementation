@@ -31,6 +31,25 @@ class BST {
         }
     }
 
+    int height(TreeNode r) {
+        int lheight;
+        int rheight;
+        if(r == null) {
+            return -1;
+        }
+        else {
+            lheight = height(r.left);
+            rheight = height(r.right);
+
+            if(lheight > rheight) {
+                return (lheight + 1);
+            }
+            else {
+                return (rheight + 1);
+            }
+        }
+    }
+    
     public void insertNode(TreeNode new_node) {
 
         if(root == null) {
@@ -105,21 +124,24 @@ class BST {
             
             case 2:
                 obj.printPreorder(obj.root);
+                System.out.println();
                 break;
             
             case 3:
                 obj.printInorder(obj.root);
+                System.out.println();
                 break;
 
             case 4:
                 obj.printPostorder(obj.root);
+                System.out.println();
                 break;
         
             default:
                 System.out.println("Enter a valid option");
                 break;
         }
-        sc.close();
+        // sc.close();
     }
 
     public void print2D(TreeNode r, int space) {
@@ -182,8 +204,8 @@ class Main {
         boolean loop = true;
         Scanner cin = new Scanner(System.in);
         while(loop) {
-            cin.nextLine();
-            System.out.print("1.Insert Node\n2.Search Node\n3.Delete Node\n4.Print BST Values\n0.Exit\nEnter your choice: ");
+            // cin.nextLine();
+            System.out.print("1.Insert Node\n2.Search Node\n3.Delete Node\n4.Print BST Values\n5.Height of Tree\n0.Exit\nEnter your choice: ");
             
             opt = cin.nextInt();
             
@@ -223,7 +245,18 @@ class Main {
                     System.out.println("Print");
                     obj.printTree(obj);
                     break;
-    
+                
+                case 5:
+                    System.out.println("Height");
+                    int h = obj.height(obj.root);
+                    if(h == -1) {
+                        System.out.println("Tree is empty!!");
+                    }
+                    else {
+                        System.out.println("Height = " + h);
+                    }
+                    break;
+                    
                 default:
                     System.out.println("Enter A Valid Option!!");
                     break;
