@@ -114,7 +114,7 @@ class BST {
     public void printTree(BST obj) {
         int opt;
         Scanner sc = new Scanner(System.in);
-        System.out.println( "\n1.Print 2D\n2.Print Preorder\n3.Print Inorder\n4.Print Postorder\nEnter your choice: ");
+        System.out.println( "\n1.Print 2D\n2.Print Preorder\n3.Print Inorder\n4.Print Postorder\n5.Print Level Order\nEnter your choice: ");
         opt = sc.nextInt();
 
         switch(opt) {
@@ -136,7 +136,12 @@ class BST {
                 obj.printPostorder(obj.root);
                 System.out.println();
                 break;
-        
+            
+            case 5:
+                obj.printLevelorder(obj.root);
+                System.out.println();
+                break;
+
             default:
                 System.out.println("Enter a valid option");
                 break;
@@ -194,6 +199,64 @@ class BST {
 
         System.out.print(r.value + " ");
     }
+
+    public void printLevelorder(TreeNode r) {
+        int h = height(r);
+        
+        for(int i = 0; i <= h; i++) {
+            printGivenLevel(r, i);
+        }
+    }
+
+    public void printGivenLevel(TreeNode r, int level) {
+        if(r == null) {
+            return;
+        }
+        else if(level == 0) {
+            System.out.print(r.value + " ");
+        }
+        else {
+            printGivenLevel(r.left, level - 1);
+            printGivenLevel(r.right, level - 1);
+        }
+    }
+
+    public TreeNode deleteNode(TreeNode r, int v) {
+        TreeNode temp;
+        if(r == null) {
+            return r;
+        }  
+        else if(v < r.value) {
+            r.left = deleteNode(r.left, v);
+        }
+        else if(v > r.value) {
+            r.right = deleteNode(r.right, v);
+        }
+        else {
+            if(r.left == null) {
+                temp = r.right;
+                return temp;
+            }
+            else if(r.right == null) {
+                temp = r.left;
+                return temp;
+            }
+            else {
+                temp = minValueNode(r.right);
+                r.value = temp.value;
+                r.right = deleteNode(r.right, temp.value);
+            }
+        }
+        return r;
+    }
+
+    TreeNode minValueNode(TreeNode node) {
+        TreeNode current = node;;
+        while(current.left != null) {
+            current = current.left;
+        }
+        return current;
+    }
 };
 
 class Main {
@@ -206,7 +269,7 @@ class Main {
         while(loop) {
             // cin.nextLine();
             System.out.print("1.Insert Node\n2.Search Node\n3.Delete Node\n4.Print BST Values\n5.Height of Tree\n0.Exit\nEnter your choice: ");
-            
+            TreeNode new_node = new TreeNode();
             opt = cin.nextInt();
             
             switch(opt) {
@@ -218,7 +281,7 @@ class Main {
                     System.out.println("Insert");
                     System.out.println("Enter value of tree node to insert in BST: ");
                     val = cin.nextInt();
-                    TreeNode new_node = new TreeNode(val);
+                    new_node = new TreeNode(val);
                     obj.insertNode(new_node);
                     System.out.println();
                     break;
@@ -239,6 +302,16 @@ class Main {
     
                 case 3:
                     System.out.println("Delete");
+                    System.out.println("Enter Value of node to be deleted: ");
+                    val = cin.nextInt();
+                    new_node = obj.iterativeSearch(val);
+                    if(new_node != null) {
+                        obj.deleteNode(obj.root, val);
+                        System.out.println("Node deleted!!");
+                    }
+                    else {
+                        System.out.println("Node not found!!");
+                    }
                     break;
     
                 case 4:
@@ -266,4 +339,3 @@ class Main {
         cin.close();
     }
 };
- 
