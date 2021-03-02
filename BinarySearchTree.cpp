@@ -168,11 +168,71 @@ class BST {
 
             cout << r->value << " ";
         }
+
+        void printGivenLevel(TreeNode *r, int level) {
+            if(r == NULL) {
+                return;
+            }
+            else if(level == 0) {
+                cout << r->value << " ";
+            }
+            else {
+                printGivenLevel(r->left, level);
+                printGivenLevel(r->right, level);
+            }
+        }
+
+        void printLevelorder(TreeNode* r) {
+            int h = height(r);
+
+            for(int i = 0; i <= h; i++) {
+                printGivenLevel(r, i);
+            }
+        }
+
+        TreeNode* minValueNode(TreeNode* node) {
+            TreeNode* current = node;
+
+            while (current->left != NULL) {
+                current = current->left;
+            }
+            return current;
+        }
+        
+        TreeNode* deleteNode(TreeNode* r, int v) {
+            if(r == NULL) {
+                return NULL;
+            }
+            else if(v < r->value) {
+                r->left = deleteNode(r->left, v);
+            }
+            else if(v > r->value) {
+                r->right = deleteNode(r->right, v);
+            }
+            else {
+                if(r->left == NULL) {
+                    TreeNode* temp = r->right;
+                    delete r;
+                    return temp;
+                }
+                else if(r->right == NULL) {
+                    TreeNode* temp = r->left;
+                    delete r;
+                    return temp;
+                }
+                else {
+                    TreeNode* temp = minValueNode(r->right);
+                    r->value = temp->value;
+                    r->right = deleteNode(r->right, temp->value);
+                }
+            }
+            return r;
+        }
 };
 
 void printTree(BST obj) {
     int opt;
-    cout << "\n1.Print 2D\n2.Print Preorder\n3.Print Inorder\n4.Print Postorder\nEnter your choice: " << endl;
+    cout << "\n1.Print 2D\n2.Print Preorder\n3.Print Inorder\n4.Print Postorder\n5.Print Level Order\nEnter your choice: " << endl;
     cin >> opt;
 
     switch(opt) {
@@ -191,7 +251,11 @@ void printTree(BST obj) {
         case 4:
             obj.printPostorder(obj.root);
             break;
-    
+
+        case 5:
+            obj.printLevelorder(obj.root);
+            break;
+            
         default:
             cout << "Enter a valid option" << endl;
             break;
@@ -234,6 +298,16 @@ int main() {
 
             case 3:
                 cout << "Delete" << endl;
+                cout << "\nEnter value of node to be deleted: ";
+                cin >> val;
+                new_node = obj.iterativeSearch(val);
+                if(new_node != NULL) {
+                    obj.deleteNode(obj.root, val);
+                    cout << "\nValue Deleted!!";
+                }
+                else {
+                    cout << "\nValue not found!!";
+                }
                 break;
 
             case 4:
