@@ -96,6 +96,27 @@ class BST {
             }
         }
 
+        TreeNode* insertRecursive(TreeNode* r, TreeNode* new_node) {
+            if(r == NULL) {
+                r = new_node;
+                cout << "\nValue Inserted" << endl;
+                return r;
+            }
+
+            if(new_node->value < r->value){
+                r->left = insertRecursive(r->left, new_node);
+            }
+            else if(new_node->value > r->value) {
+                r->right = insertRecursive(r->right, new_node);
+            }
+            else {
+                cout << "\nNo Duplicates Allowed!!" << endl;
+                return r;
+            }
+
+            return r;
+        }
+
         TreeNode* iterativeSearch(int val) {
             if(root == NULL) {
                 return root;
@@ -279,7 +300,7 @@ int main() {
                 cout << "\nEnter value of tree node to insert in BST: ";
                 cin >> val;                 
                 new_node->value = val;
-                obj.insertNode(new_node);
+                obj.root = obj.insertRecursive(obj.root, new_node);
                 cout << endl;
                 break;
 
