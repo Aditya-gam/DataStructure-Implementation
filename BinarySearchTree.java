@@ -88,6 +88,25 @@ class BST {
         }
     }
 
+    TreeNode insertRecursive(TreeNode r, TreeNode new_node) {
+        if(r == null) {
+            r = new_node;
+            return r;
+        }
+
+        if(new_node.value < r.value) {
+            r.left = insertRecursive(r.left, new_node);
+        }
+        else if(new_node.value > r.value) {
+            r.right = insertRecursive(r.right, new_node);
+        }
+        else{
+            System.out.println("No Duplicates allowed!!");
+            return r;
+        }
+        return r;
+    }
+
     public TreeNode iterativeSearch(int val) {
         if(root == null) {
             return root;
