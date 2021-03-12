@@ -301,7 +301,7 @@ class Main {
                     System.out.println("Enter value of tree node to insert in BST: ");
                     val = cin.nextInt();
                     new_node = new TreeNode(val);
-                    obj.insertNode(new_node);
+                    obj.root = obj.insertRecursive(obj.root, new_node);
                     System.out.println();
                     break;
     
