@@ -354,7 +354,7 @@ class Main {
                     break;
             }
             
-        }
+        }   
         cin.close();
     }
 };
