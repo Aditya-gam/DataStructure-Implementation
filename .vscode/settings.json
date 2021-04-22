@@ -83,5 +83,8 @@
         "**/CVS": true,
         "**/.DS_Store": true,
         "**/*.exe" : true
-    }
+    },
+    "java.project.sourcePaths": [
+        ""
+    ]
 }
