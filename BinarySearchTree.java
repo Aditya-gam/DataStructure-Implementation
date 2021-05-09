@@ -1,17 +1,17 @@
 import java.util.*;
 
-class TreeNode {
+class TreeNode1 {
     int value;
-    TreeNode left;
-    TreeNode right;
+    TreeNode1 left;
+    TreeNode1 right;
 
-    public TreeNode() {
+    public TreeNode1() {
         value = 0;
         left = null;
         right = null;
     }
 
-    public TreeNode(int v) {
+    public TreeNode1(int v) {
         value = v;
         left = null;
         right = null;
@@ -20,7 +20,7 @@ class TreeNode {
 
 class BST {
 
-    TreeNode root;
+    TreeNode1 root;
 
     public boolean isEmpty() {
         if(root == null) {
@@ -31,7 +31,7 @@ class BST {
         }
     }
 
-    int height(TreeNode r) {
+    int height(TreeNode1 r) {
         int lheight;
         int rheight;
         if(r == null) {
@@ -50,7 +50,7 @@ class BST {
         }
     }
     
-    public void insertNode(TreeNode new_node) {
+    public void insertNode(TreeNode1 new_node) {
 
         if(root == null) {
             root = new_node;
@@ -58,7 +58,7 @@ class BST {
         }
 
         else {
-            TreeNode temp = root;
+            TreeNode1 temp = root;
 
             while(temp != null) {
 
@@ -88,7 +88,7 @@ class BST {
         }
     }
 
-    TreeNode insertRecursive(TreeNode r, TreeNode new_node) {
+    TreeNode1 insertRecursive(TreeNode1 r, TreeNode1 new_node) {
         if(r == null) {
             r = new_node;
             return r;
@@ -107,12 +107,12 @@ class BST {
         return r;
     }
 
-    public TreeNode iterativeSearch(int val) {
+    public TreeNode1 iterativeSearch(int val) {
         if(root == null) {
             return root;
         }
         else {
-            TreeNode temp = root;
+            TreeNode1 temp = root;
 
             while(temp != null) {
                 if(val == temp.value) {
@@ -168,7 +168,7 @@ class BST {
         // sc.close();
     }
 
-    public void print2D(TreeNode r, int space) {
+    public void print2D(TreeNode1 r, int space) {
         if (r == null) {
             return ;
         }
@@ -183,7 +183,7 @@ class BST {
         print2D(r.left, space);
     }
 
-    public void printPreorder(TreeNode r) {
+    public void printPreorder(TreeNode1 r) {
         if(r == null) {
             return;
         }
@@ -195,7 +195,7 @@ class BST {
         printPreorder(r.right);
     }
 
-    public void printInorder(TreeNode r) {
+    public void printInorder(TreeNode1 r) {
         if(r == null) {
             return;
         }
@@ -207,7 +207,7 @@ class BST {
         printInorder(r.right);
     }
 
-    public void printPostorder(TreeNode r) {
+    public void printPostorder(TreeNode1 r) {
         if(r == null) {
             return;
         }
@@ -219,7 +219,7 @@ class BST {
         System.out.print(r.value + " ");
     }
 
-    public void printLevelorder(TreeNode r) {
+    public void printLevelorder(TreeNode1 r) {
         int h = height(r);
         
         for(int i = 0; i <= h; i++) {
@@ -227,7 +227,7 @@ class BST {
         }
     }
 
-    public void printGivenLevel(TreeNode r, int level) {
+    public void printGivenLevel(TreeNode1 r, int level) {
         if(r == null) {
             return;
         }
@@ -240,8 +240,8 @@ class BST {
         }
     }
 
-    public TreeNode deleteNode(TreeNode r, int v) {
-        TreeNode temp;
+    public TreeNode1 deleteNode(TreeNode1 r, int v) {
+        TreeNode1 temp;
         if(r == null) {
             return r;
         }  
@@ -269,8 +269,8 @@ class BST {
         return r;
     }
 
-    TreeNode minValueNode(TreeNode node) {
-        TreeNode current = node;;
+    TreeNode1 minValueNode(TreeNode1 node) {
+        TreeNode1 current = node;;
         while(current.left != null) {
             current = current.left;
         }
@@ -288,7 +288,7 @@ class Main {
         while(loop) {
             // cin.nextLine();
             System.out.print("1.Insert Node\n2.Search Node\n3.Delete Node\n4.Print BST Values\n5.Height of Tree\n0.Exit\nEnter your choice: ");
-            TreeNode new_node = new TreeNode();
+            TreeNode1 new_node = new TreeNode1();
             opt = cin.nextInt();
             
             switch(opt) {
@@ -300,7 +300,7 @@ class Main {
                     System.out.println("Insert");
                     System.out.println("Enter value of tree node to insert in BST: ");
                     val = cin.nextInt();
-                    new_node = new TreeNode(val);
+                    new_node = new TreeNode1(val);
                     obj.root = obj.insertRecursive(obj.root, new_node);
                     System.out.println();
                     break;
@@ -309,7 +309,7 @@ class Main {
                     System.out.println("Search");
                     System.out.println("Enter value to be searched: ");
                     val = cin.nextInt();
-                    TreeNode new_nod = new TreeNode();
+                    TreeNode1 new_nod = new TreeNode1();
                     new_nod = obj.iterativeSearch(val);
                     if(new_nod != null) {
                         System.out.println("\nValue Found!!");
