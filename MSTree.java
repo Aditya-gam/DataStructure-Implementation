@@ -1,6 +1,3 @@
-// A Java program for Prim's Minimum Spanning Tree (MST) algorithm. 
-// The program is for adjacency matrix representation of the graph 
-  
 import java.util.*; 
   
 class MST { 
@@ -17,7 +14,7 @@ class MST {
         int min = Integer.MAX_VALUE, min_index = -1;  
   
         for (int v = 0; v < vertices; v++) {
-            if (inMstSet[v] == false && weight[v] < min) { 
+            if (inMstSet[v] == false && weight[v]< min) { 
                 min = weight[v]; 
                 min_index = v; 
             } 
@@ -89,7 +86,7 @@ class MST {
   
 }
 
-class Main {
+class Main4 {
     public static void main(String[] args) { 
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter number of vertices: ");
