@@ -18,7 +18,8 @@ class HashAssignment {
         // Logic for hashfunction and return int;
         int i, hashValue = 0;
         for(i = 0; i < str.length(); i++) {
-            hashValue += (((int)str.charAt(i)) - 96) * Math.pow(7, str.length()-i-1);
+            hashValue += (((int)str.charAt(i)) - 96) * Math.pow(7, i);
+            // hashValue += (((int)str.charAt(i)) - 96) * Math.pow(7, str.length() - i - 1);
         }
         return hashValue % hashTableLen;
     }
@@ -26,7 +27,7 @@ class HashAssignment {
     public void printHashTable() {
         int i;
         HashTable iterate;
-        System.out.println("\tIndex\tValue");
+        System.out.println("\tIndex\t\tValue");
         System.out.println("\t------------------------------------------------------------------");
 
         for(i = 0; i < hashTableLen; i++) {
