@@ -297,7 +297,7 @@ class AVL {
     }
 }
 
-class Main {
+class Main6 {
     public static void main(String[] args) {
         AVL obj = new AVL();
         int opt; 
